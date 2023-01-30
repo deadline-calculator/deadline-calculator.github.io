@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head></head>
+    <title>Deadline Calculator</title>
+    <style>
+        body {background-color: black; color: white; font-family: "Roboto";}
+        div{
+            margin: 10% 30%;
+            width: 50%;
+            font-size: 200%;
+        }
+        p {
+            align-items: center;
+        }
+        input {
+            color: white;
+            background-color: black;
+            font-size: 100%
+        }
+        h1{
+            margin: auto;
+            align-items: center;
+             font-size: 150%;   
+            }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>DEADLINE CALCULATOR</h1>
+    <p><input type="text" id="totalhours" onkeyup="calculate()"> Total Hours<br></p>
+        <p><input type="text" id="hours" onkeyup="calculate()"> Hours a day<br></p>
+        <p><input type="text" id="result" onkeyup="calculate()" readonly> Date of deadline<br></p>
+       <!--<input type="date" id="finaldate">Deadline<br>-->
+        
+   
+    <script>
+        Date.prototype.addDays = function(days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+        }
+        function calculate() {
+            var input1 = document.querySelector('#totalhours').value;
+            var input2 = document.querySelector('#hours').value;
+            if (input1 && input2) {
+                var days = input1/input2;
+                var date = new Date();
+                var date2 = date.addDays(days);
+                var month = date2.getMonth() + 1;
+                document.querySelector('#result').value =  date2.getDate() +"/"+ month +"/" + date2.getFullYear();         
+            }
+            /*var date = document.getElementById("finaldate");
+            document.getElementById("finaldate").value = date.setDate(date.getDate() + delta);*/
+        }
+        </script>
+    </div>
+</body>
+</html>
